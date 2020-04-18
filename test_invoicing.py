@@ -2,6 +2,7 @@ from decimal import Decimal
 from unittest.case import TestCase
 
 from eventsourcing.application.notificationlog import NotificationLogReader
+from eventsourcing.application.popo import PopoApplication
 
 from invoicing.application import InvoicingApplication
 from invoicing.domainmodel import Invoice
@@ -9,7 +10,7 @@ from invoicing.domainmodel import Invoice
 
 class TestInvoicing(TestCase):
     def test(self):
-        with InvoicingApplication() as app:
+        with InvoicingApplication.mixin(PopoApplication)() as app:
             assert isinstance(app, InvoicingApplication)
 
             # Create an invoice.

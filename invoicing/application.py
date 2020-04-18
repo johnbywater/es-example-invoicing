@@ -1,11 +1,11 @@
 from uuid import NAMESPACE_URL, UUID, uuid5
 
-from eventsourcing.application.sqlalchemy import SQLAlchemyApplication
+from eventsourcing.application.simple import SimpleApplication
 
 from invoicing.domainmodel import Invoice
 
 
-class InvoicingApplication(SQLAlchemyApplication):
+class InvoicingApplication(SimpleApplication):
     persist_event_type = Invoice.Event
 
     def create_invoice(self, number, amount) -> UUID:
